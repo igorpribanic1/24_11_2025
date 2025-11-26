@@ -41,10 +41,11 @@ public class Zadatak3 {
                               if(cF.exists()){
                                   System.err.println("Definirana destinacijska datoteka već postoji. Kopiranje NIJE napravljeno!");
                               } else{
-                                  cF.createNewFile();
+                                  if(cF.canWrite()) {
+                                      cF.createNewFile();
 
-                                  try(FileInputStream fis = new FileInputStream(f);
-                                      FileOutputStream fos = new FileOutputStream(cF);){
+                                      try (FileInputStream fis = new FileInputStream(f);
+                                           FileOutputStream fos = new FileOutputStream(cF);) {
                                           int i;
                                           while ((i = fis.read()) != -1) {
                                               fos.write(i);
@@ -52,6 +53,9 @@ public class Zadatak3 {
 
                                           System.out.println("Kopiranje datoteke uspješno je napravljeno");
                                           validInput = true;
+                                      }
+                                  } else {
+                                      System.err.println("Prava za pisanje ne postoje. Kopiranje NIJE napravljeno!");
                                   }
                               }
 
