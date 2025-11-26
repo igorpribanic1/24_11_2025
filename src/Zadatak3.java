@@ -33,13 +33,14 @@ public class Zadatak3 {
                       } else{
                           if(!f.canRead()){
                               System.err.println("Definiranu originalnu datoteku nije moguće pročitati!");
-                              validInput = false;
+                              validInput = true;
                           } else{
                               System.out.println("Upišite apsolutnu putanju destinacijske datoteke: ");
                               destinationFile = br.readLine();
                               File cF = new File(destinationFile);
                               if(cF.exists()){
                                   System.err.println("Definirana destinacijska datoteka već postoji. Kopiranje NIJE napravljeno!");
+                                  validInput = true;
                               } else{
                                   if(cF.canWrite()) {
                                       cF.createNewFile();
@@ -56,6 +57,7 @@ public class Zadatak3 {
                                       }
                                   } else {
                                       System.err.println("Prava za pisanje ne postoje. Kopiranje NIJE napravljeno!");
+                                      validInput = true;
                                   }
                               }
 
